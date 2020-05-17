@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="fenbu.css">
+<link rel="stylesheet" href="style.css">
+<body>
+    <div class="title">
+        <img src="tt.jpg">
+        <div class="daohang">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="fenbu.html">垃圾箱分布</a></li>
+                <li><a href="renwu.html">任务列表</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- <div class="nav">
+       
+        <input class="search" type="text" placeholder="请输入地址搜索">
+        <img src="img/ss.png" width="30px" height="30px">
+        <a class="daohang" href="https://uri.amap.com/marker">
+            <img src="img/dh.png" width="30px" height="30px">
+        </a>
+    </div> -->
+    <div class="box">
+        <!-- <div class="cc">
+            <img src="img/ljt.png" width="140px" height="160px">
+            <p class="name">西安欧亚学院图书馆</p>
+            <p>2号垃圾箱</p>
+            <p class="status">空</p>
+        </div> -->
+    </div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://39.107.65.22:8080/api/box/find",
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                console.log(typeof (res));
+
+                var str = '';
+                for (i in res) {
+                    console.log(res[i].address)
+                    if(res[i].status==0){
+                        res[i].status="可用";
+                    }
+                     if (res[i].status == 1) {
+                        res[i].status = "已满";
+                    }
+                     if (res[i].status == 2) {
+                        res[i].status = "已损坏";
+                    }
+                    str += '<div class="cc">';
+                    str += '<img src="ljt.png" width="140px" height="160px">';
+                    str += '<p class="name">' + res[i].address + '</p>';
+                    str += '<p>' + res[i].dustbin + '</p>';
+                    str += '<p class="status">' + res[i].status + '</p>';
+                    str += '</div>';
+                }
+                $(".box").append(str);
+            }
+        });
+    });
+</script>
+
+</html>

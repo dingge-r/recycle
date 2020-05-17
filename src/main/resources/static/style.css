@@ -1,0 +1,34 @@
+.title{
+     width: 100%;
+     height:100px;
+      max-width: 1600px;
+    clear: both;
+      background-color:rgb(246,246,246);
+    
+}
+.title img{
+    margin-left: 160px;
+    width: 170px;
+     height:100px;
+}
+.daohang ul{
+    list-style: none;
+     position: absolute;
+     left:940px ;
+     top: 20px;
+}
+.daohang li{
+    float: left;
+  margin-left: 52px;
+  font-style: inherit;
+  font-size: 18px;
+}
+.daohang li:hover a{
+    font-size: 20px;
+    color: #66CD00;
+    cursor:pointer;
+}
+.daohang li a{
+    text-decoration: none;
+    color: #000;
+}

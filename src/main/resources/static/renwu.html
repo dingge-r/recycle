@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<style>
+    body {
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        /* background:#F5F5F5 ; */
+    }
+
+    .box {
+        width: 100%;
+        height: 100px;
+    }
+
+    .box .xuhao {
+        margin-left: 190px;
+        margin-top: 60px;
+        font-size: 60px;
+    }
+
+    .renwu {
+        width: 900px;
+        height: 80px;
+        margin: -140px auto;
+        background-color: white;
+        border-radius: 10px;
+        line-height: 80px;
+        box-shadow: 10px 10px 15px 10px #E0E0E0;
+        padding-left: 30px;
+    }
+
+    .name {
+        font-size: 20px;
+    }
+
+    .status {
+        margin-left: 810px;
+        margin-top: -100px;
+        color: red;
+    }
+    /* .title{
+        background: white;
+    } */
+</style>
+
+<body>
+<div class="title">
+    <img src="tt.jpg">
+    <div class="daohang">
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="fenbu.html">垃圾箱分布</a></li>
+            <li><a href="renwu.html">任务列表</a></li>
+        </ul>
+    </div>
+</div>
+    <!-- <div class="box">
+        <p class="xuhao">1</p>
+        <div class="renwu">
+            <p class="name">西安欧亚学院图书馆二楼2号垃圾箱</p>
+            <p class="status">已满</p>
+        </div>
+    </div> -->
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://39.107.65.22:8080/api/box/findByStatus",
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                console.log(typeof (res));
+                var str = '';
+                for (i in res) {
+                    console.log(res[i].address)
+                    if (res[i].status == 1) {
+                        res[i].status = "已满";
+                    }
+                    if (res[i].status == 2) {
+                        res[i].status = "已损坏";
+                    }
+                    // int k=i+1;
+                    str += ' <div class="box">';
+                    str += '<p class="xuhao">' + i + '</p>';
+                    str += ' <div class="renwu">';
+                    str += '<p class="name">' + res[i].address + '</p>';
+                    str += '<p class="status">' + res[i].status + '</p>';
+                    str += '</div>';
+                    str += '</div>';
+                }
+                $("body").append(str);
+            }
+        });
+    });
+</script>
+
+</html>

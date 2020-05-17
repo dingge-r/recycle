@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+database:
+  url: jdbc:mysql://39.107.65.22:3306/garbage?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&characterEncoding=utf-8
+  #url: jdbc:mysql://localhost:3306/materials?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+  username: root
+  password: root
+spring:
+  datasource:
+    url: ${database.url}
+    username: ${database.username}
+    password: ${database.password}
+    type: com.alibaba.druid.pool.DruidDataSource
+  servlet:
+    multipart:
+      enabled: true
+#mybatis  打印日志
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+
+
